@@ -2,9 +2,15 @@ cff-version: 1.2.0
 message: "If you use efaTrail, please cite it as below."
 title: "efaTrail: Sequential Multi-Construct Exploratory Factor Analysis with Audit-Trail Reporting"
 authors:
-  - family-names: "Ningsih"
-    given-names: "Tri Zahra"
+  - family-names: "Rosita"
+    given-names: "Diana"
+  - family-names: "Sukirlan"
+    given-names: "Muhammad"
+  - family-names: "Rusminto"
+    given-names: "Nurlaksana Eko"
+  - family-names: "Kadaryanto"
+    given-names: "Budi"
 version: 0.1.0
 date-released: 2026-01-01
-url: "https://github.com/trizahra10019-spec/efaTrail"
+url: "https://github.com/dianarosita/efaTrail"
 license: MIT

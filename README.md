@@ -29,7 +29,7 @@ automating the appendix, not just the item removal.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("trizahra10019-spec/efaTrail")
+remotes::install_github("dianarosita/efaTrail")
 ```
 
 Requires the [`psych`](https://cran.r-project.org/package=psych) package
@@ -72,10 +72,9 @@ responses would not be published, and this package honors that.
 
 ## Citation
 
-If you use `efaTrail`, please also see the related package
-[`condfair`](https://github.com/trizahra10019-spec/condfair) (ability-conditioned
-fairness metrics for automated scoring), published in *Applied
-Psychological Measurement*.
+If you use `efaTrail`, please cite it via the metadata in `CITATION.cff`,
+or see the accompanying manuscript (Rosita, Sukirlan, Rusminto, &
+Kadaryanto, 2026, submitted to *Applied Psychological Measurement*).
 
 ## License
 
