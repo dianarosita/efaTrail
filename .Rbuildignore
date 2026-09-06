@@ -1,0 +1,6 @@
+^\.github$
+^\.gitignore$
+^CITATION\.cff$
+^docs$
+^README\.md$
+^\.Rproj\.user$

@@ -1,0 +1,36 @@
+Package: efaTrail
+Type: Package
+Title: Sequential Multi-Construct Exploratory Factor Analysis with Audit-Trail Reporting
+Version: 0.1.0
+Authors@R: c(
+    person("Tri Zahra", "Ningsih", email = "your.email@example.ac.id",
+           role = c("aut", "cre"))
+    )
+Description: Orchestrates exploratory factor analysis (EFA) across every
+    construct (sub-scale) of a multidimensional instrument in sequence,
+    iteratively removing items with low factor loadings, strong
+    cross-loadings, or high uniqueness, and records every decision at
+    every iteration. Unlike existing single-pool item-purification tools
+    (e.g. 'ItemRest' on CRAN, or 'efa_utils' on PyPI for Python), which
+    purify one item set at a time and leave the researcher to repeat the
+    process by hand across sub-scales and write up each step, efaTrail
+    automates both the multi-construct orchestration and the generation
+    of a publication-ready audit-trail report, of the kind researchers
+    have traditionally compiled manually as a supplementary appendix
+    during scale development.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.6.0)
+Imports:
+    psych,
+    stats
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.3.2
+URL: https://github.com/trizahra10019-spec/efaTrail
+BugReports: https://github.com/trizahra10019-spec/efaTrail/issues
+Config/testthat/edition: 3

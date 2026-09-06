@@ -1,0 +1,73 @@
+---
+title: "Introduction to efaTrail"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to efaTrail}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## The problem
+
+Developing a multidimensional instrument (a questionnaire with several
+sub-scales, or "constructs") usually means running exploratory factor
+analysis (EFA) separately for each construct, removing weak items one at a
+time, re-running, and writing up every iteration -- often as a long
+supplementary appendix.
+
+Existing R and Python tools (`psych`, `EFAtools`, `ItemRest`, `efa_utils`)
+purify a *single* item pool at a time and leave the researcher to repeat the
+process by hand across constructs, and to write up each step manually.
+
+`efaTrail` automates both the multi-construct orchestration and the
+audit-trail write-up.
+
+## A minimal example
+
+```{r setup}
+library(efaTrail)
+
+synthetic_reading <- read.csv(
+  system.file("extdata", "synthetic_reading.csv", package = "efaTrail")
+)
+
+constructs <- list(
+  SA = grep("^SA", names(synthetic_reading), value = TRUE),
+  CS = grep("^CS", names(synthetic_reading), value = TRUE)
+)
+
+result <- efa_trail(synthetic_reading, constructs)
+print(result)
+```
+
+## Inspecting the audit trail
+
+```{r audit}
+audit_report(result)
+```
+
+Each construct's `iterations` list records, at every step: the number of
+items still in play, the overall KMO, the retained factor count, and which
+item (if any) was removed and why -- exactly the information researchers
+have traditionally compiled by hand.
+
+```{r details}
+str(result$SA$iterations[[1]], max.level = 1)
+```
+
+## Feeding the result into a CFA (lavaan)
+
+Once a construct's item set is stable, `final_items` is ready to hand off
+to `lavaan` for confirmatory factor analysis:
+
+```{r lavaan, eval = FALSE}
+library(lavaan)
+
+model <- paste0("SA =~ ", paste(result$SA$final_items, collapse = " + "))
+fit <- cfa(model, data = synthetic_reading)
+summary(fit, fit.measures = TRUE, standardized = TRUE)
+```
